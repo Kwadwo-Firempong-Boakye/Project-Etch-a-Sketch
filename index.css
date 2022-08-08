@@ -10,6 +10,7 @@ body {
     justify-content: center;
     flex-direction: column;
     padding: 1vh 1vw; 
+    border: 1px solid #aeaeae;
 }
 
 .group {
@@ -22,4 +23,5 @@ body {
 .standard {
     width: 5.9vw;
     height: 5.9vh;
+    border: 1px solid #aeaeae;
 }
