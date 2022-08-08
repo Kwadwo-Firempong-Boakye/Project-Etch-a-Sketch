@@ -41,7 +41,7 @@ function createNewGrid () {
     let standardDiv = document.querySelectorAll(".standard");
     standardDiv.forEach((item) => {
         item.addEventListener("mouseover", (e) => {
-            e.target.style.backgroundColor = "#252526";
+            e.target.style.backgroundColor = "#353536";
         })
     });
 
@@ -51,8 +51,18 @@ function createNewGrid () {
     createNewGrid();
     
     
-   
-    
+   //Function to prompt grid size from user
+  function promptGridSize () {
+    let promptButton = document.createElement("button");
+    promptButton.classList.add("promptButton");
+    promptButton.innerText = "Set Squares Per Side";
+    body.prepend(promptButton);
+    promptButton.addEventListener("click", (e) => {
+        e.target.classList.toggle("clickedButton");
+    })
+  }
+
+  promptGridSize();
 
     
 

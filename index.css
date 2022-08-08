@@ -1,4 +1,3 @@
-html,
 body {
     margin: 0;
     padding: 0;
@@ -7,7 +6,7 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    margin: 9.5vh 9.5vw;
+    margin: auto 9.5vw;
 }
 
 .group {
@@ -23,3 +22,27 @@ body {
 /* .standard:hover {
     background: salmon;
 } */
+
+.promptButton {
+    display: block;
+    margin: 4vh auto;
+    padding: 1vh 1.5vw;
+    color: white;
+    background-color: #353536;
+    border: none;
+    border-radius: 1em;
+    font-size: 1.5em;
+    box-shadow: 0px 10px 5px #626262;
+    transition: all 0.2s ease-in-out;
+}
+
+.promptButton:hover {
+    background-color: black;
+}
+
+.promptButton:active {
+    transform: translateY(9px);
+    box-shadow: 0px 5px 5px #353536;
+
+
+}
