@@ -1,0 +1,25 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1vh 1vw; 
+}
+
+.group {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #aeaeae;
+    height: 5.9vh
+}
+
+.standard {
+    width: 5.9vw;
+    height: 5.9vh;
+}
