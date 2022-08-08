@@ -8,20 +8,26 @@ body {
 .container {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     padding: 1vh 1vw; 
-    border: 1px solid #aeaeae;
+    margin: 1vh 1vw;
+    /*border: 1px solid #aeaeae;*/
 }
 
 .group {
     display: flex;
     flex-direction: row;
     border: 1px solid #aeaeae;
-    height: 5.9vh
+    height: 5vh
 }
 
 .standard {
-    width: 5.9vw;
-    height: 5.9vh;
+    width: 5vw;
+    height: 5vh;
     border: 1px solid #aeaeae;
+}
+
+.standard:hover {
+    background: salmon;
 }
