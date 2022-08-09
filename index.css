@@ -1,38 +1,37 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    margin: auto 9.5vw;
+    margin: 0 auto;
+    border: 1px solid black;
 }
 
 .group {
     display: flex;
     flex-direction: row;
-    /* border: 1px solid #aeaeae; */
-}
-
-.standard {
     border: 1px solid #aeaeae;
 }
 
-/* .standard:hover {
-    background: salmon;
-} */
+.standard {
+     border: 1px solid #aeaeae; 
+}
+
 
 .promptButton {
     display: block;
-    margin: 4vh auto;
-    padding: 1vh 1.5vw;
+    margin: 30px auto;
+    padding: 10px 15px;
     color: white;
     background-color: #353536;
     border: none;
-    border-radius: 1em;
-    font-size: 1.5em;
-    box-shadow: 0px 10px 5px #626262;
+    border-radius: 16px;
+    font-size: 20px;
+    box-shadow: 0px 7px 5px #626262;
     transition: all 0.2s ease-in-out;
 }
 
@@ -43,6 +42,16 @@ body {
 .promptButton:active {
     transform: translateY(9px);
     box-shadow: 0px 5px 5px #353536;
+}
 
+.footer {
+    font-size: 16px;
+    text-align: center;
+    font-family: sans-serif;
+    padding: 10px;
+}
 
+.footer a{
+    text-decoration: none;
+    font-family: sans-serif;
 }
