@@ -15,17 +15,18 @@ function createNewGrid() {
 
 	//Create menu
 	menuContainer.innerHTML =
-		"<p>Pixel Pad</p><button>Set Squares Per Side</button><button>Choose Color</button><input type='color' id='color-picker' value='#4169a6'/><button>Rainbow Mode</button><button>Progressively Darken</button><button>Clear Canvas</button>";
+		"<p>Pixel Pad</p><p>Select a mode to begin</p><button>Set Squares Per Side</button><button>Choose Color</button><input type='color' id='color-picker' value='#4169a6'/><button>Rainbow Mode</button><button>Progressively Darken</button><button>Clear Canvas</button>";
 	let menuButtons = document.querySelectorAll("button");
 	menuButtons.forEach((element) => {
 		element.classList.add("menu-button");
 	});
 	let heading = document.querySelector(".menu");
 	heading.children[0].classList.add("heading");
+	heading.children[1].classList.add("subheading");
 
 	//Set Container Variables
 	let containerLength = 500; //px
-	let groupHeight = (containerLength - 2 * groupCount) / groupCount;
+	let groupHeight = (containerLength - 2 * groupCount) / groupCount; // formula is weird because it factors in the borders of 1px applied to the div elements
 
 	//Step 1 - Create container with flex direction column and set container width
 	let container = document.createElement("div");
@@ -52,36 +53,37 @@ function createNewGrid() {
 		}
 	}
 
-	//Step 4 - Add event listener on each standard div for hover effect
+	//Step 4 - Set Color Variables and select all standard div elements
 	let colorPicker = document.querySelector("#color-picker");
-	let color = document.querySelector("#color-picker").value;
+	let selectedColor = colorPicker.value; // color picker value is set to a default in the virtual HTML. See menuContainer.innerHTML
+	let initialHslColor = "hsl(0, 100%, 90%)";
 	let standardDiv = document.querySelectorAll(".standard");
 
-	standardDiv.forEach((item) => {
-		item.addEventListener("mouseover", (e) => {
-			e.target.style.backgroundColor = color;
-		});
-	});
-
-	colorPicker.addEventListener("change", (e) => {
-		color = e.target.value;
-		console.log(color);
-	});
-
 	//Step 5 - Add Buttons for prompting and add event listener to trigger new Grid, change modes and clear canvas
-	// let randomColor = Math.floor(Math.random()*16777215).toString(16);
 
 	menuButtons[0].addEventListener("click", setGridSize);
 
-    colorPicker.addEventListener("click", removeRandomColor);
+	colorPicker.addEventListener("change", (e) => {
+		selectedColor = e.target.value;
+		standardColorPicker();
+	});
 
 	menuButtons[2].addEventListener("click", addRandomColor);
 
-	menuButtons[4].addEventListener("click", () => {
-		standardDiv.forEach((element) => {
-			element.style.backgroundColor = "#e0e5ec";
+	menuButtons[3].addEventListener("click", progressive);
+
+	menuButtons[4].addEventListener("click", clearCanvas);
+
+	//Step 6 - Create functions
+
+	//Function for standard color selection
+	function standardColorPicker() {
+		standardDiv.forEach((item) => {
+			item.addEventListener("mouseover", (e) => {
+				e.target.style.backgroundColor = selectedColor;
+			});
 		});
-	});
+	}
 
 	//Function to generate Random Color
 	function addRandomColor() {
@@ -93,30 +95,38 @@ function createNewGrid() {
 		});
 	}
 
-    function removeRandomColor() {
+	// Function for progressive darken
+	function progressive() {
 		standardDiv.forEach((item) => {
+			let tempColor = initialHslColor;
 			item.addEventListener("mouseover", (e) => {
-				e.target.style.backgroundColor = color;
+				const [hue, saturation, lightness] = tempColor
+					.match(/\d+/g)
+					.map(Number);
+				const newLightness = Math.max(0, Math.min(100, lightness - 10));
+				tempColor = `hsl(${hue}, ${saturation}%, ${newLightness}%)`;
+				e.target.style.backgroundColor = tempColor;
+				console.log(tempColor);
 			});
 		});
 	}
 
-	function soloColor() {
-        standardDiv.forEach((item) => {
-            item.addEventListener("mouseover", (e) => {
-                e.target.style.backgroundColor = "#000000";
-            });
-        });
-    }
+	//Function to clear pixel pad
+	function clearCanvas() {
+		standardDiv.forEach((item) => {
+			item.style.backgroundColor = "#e0e5ec";
+		});
+	}
 }
 
-//Step 6 - Add footer
+//Step 7 - Add footer area
 let footerArea = document.createElement("footer");
-
 footerArea.innerHTML =
 	"<p>Designed & developed by <a href='https://github.com/Kwadwo-Firempong-Boakye'>Kwadwo Firempong-Boakye</a>  | &copy; The Odin Project Foundations Course  |  2022</p>";
 footerArea.classList.add("footer");
 body.insertAdjacentElement("afterend", footerArea);
+
+//Step 8 - External functions
 
 //Function to reset Grid;
 function resetGrid() {
@@ -145,5 +155,3 @@ function setGridSize() {
 	resetGrid();
 	createNewGrid();
 }
-
-//Function to create random colors on hover

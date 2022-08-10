@@ -24,7 +24,7 @@ body {
 .menu {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 23px;
     justify-content: center;
 }
 
@@ -54,6 +54,14 @@ body {
     font-weight: 600;
     margin: 0;
     color: #4169a6;
+}
+
+.subheading {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #4169a6;
+    text-align: center;
 }
 
 .container {
@@ -93,5 +101,5 @@ body {
     height: 55px;
     position: absolute;
     opacity: 0;
-    margin-bottom: 50px
+    margin-bottom: 5px;
 }
