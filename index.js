@@ -106,7 +106,6 @@ function createNewGrid() {
 				const newLightness = Math.max(0, Math.min(100, lightness - 10));
 				tempColor = `hsl(${hue}, ${saturation}%, ${newLightness}%)`;
 				e.target.style.backgroundColor = tempColor;
-				console.log(tempColor);
 			});
 		});
 	}
