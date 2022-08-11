@@ -15,7 +15,7 @@ function createNewGrid() {
 
 	//Create menu
 	menuContainer.innerHTML =
-		"<p>Pixel Pad</p><p>Select a mode to begin</p><button>Set Squares Per Side</button><button>Choose Color</button><input type='color' id='color-picker' value='#4169a6'/><button>Rainbow Mode</button><button>Progressively Darken</button><button>Clear Canvas</button>";
+		"<p>Pixel Pad</p><p>Select a mode to begin</p><button>Set Squares Per Side</button><button>Choose Color</button><input type='color' id='color-picker' value='#4169a6'/><button>Rainbow Mode</button><button>Progressively Darken</button><button>Eraser</button><button>Clear Canvas</button>";
 	let menuButtons = document.querySelectorAll("button");
 	menuButtons.forEach((element) => {
 		element.classList.add("menu-button");
@@ -72,7 +72,9 @@ function createNewGrid() {
 
 	menuButtons[3].addEventListener("click", progressive);
 
-	menuButtons[4].addEventListener("click", clearCanvas);
+	menuButtons[4].addEventListener("click", eraser);
+
+	menuButtons[5].addEventListener("click", clearCanvas);
 
 	//Step 6 - Create functions
 
@@ -106,6 +108,15 @@ function createNewGrid() {
 				const newLightness = Math.max(0, Math.min(100, lightness - 10));
 				tempColor = `hsl(${hue}, ${saturation}%, ${newLightness}%)`;
 				e.target.style.backgroundColor = tempColor;
+			});
+		});
+	}
+
+	//Function to simulate eraser
+	function eraser() {
+		standardDiv.forEach((item) => {
+			item.addEventListener("mouseover", (e) => {
+				e.target.style.backgroundColor = "#e0e5ec";
 			});
 		});
 	}
