@@ -152,14 +152,16 @@ function setGridSize() {
 		"How many squares do you want on each side? \n\nMaximum you can have is 100"
 	);
 
-	if (userSelection > 100 || userSelection < 1) {
+	let computedSelection = Math.round(userSelection);
+	
+	if (computedSelection > 100 || computedSelection < 1) {
 		alert(
 			"Maximum number of squares on each side is limited between 1 to 100 to avoid your browser from crashing. \n\nSelect a different number of squares."
 		);
-	} else if (isNaN(userSelection)) {
+	} else if (isNaN(computedSelection)) {
 		alert("Only numbers are accepted. \nTry again.");
 	} else {
-		groupCount = userSelection;
+		groupCount = computedSelection;
 	}
 
 	resetGrid();
